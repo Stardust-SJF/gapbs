@@ -42,7 +42,8 @@ typedef WriterBase<NodeID, NodeID> Writer;
 typedef WriterBase<NodeID, WNode> WeightedWriter;
 
 
-// Used to pick random non-zero degree starting points for search algorithms
+// Used to  random non-zero degree starting points for search algorithms
+// Change: sequntially search available source vertex
 template<typename GraphT_>
 class SourcePicker {
  public:
@@ -55,7 +56,7 @@ class SourcePicker {
       return given_source;
     NodeID source;
     do {
-      source = udist(rng);
+      source += 1;
     } while (g_.out_degree(source) == 0);
     return source;
   }
